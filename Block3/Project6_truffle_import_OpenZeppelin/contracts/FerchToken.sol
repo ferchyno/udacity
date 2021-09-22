@@ -21,5 +21,5 @@ contract FerchToken is ERC20 {
         // _mint(msg.sender, _initialSupply);
         _totalSupply = _initialSupply;
         _balances[msg.sender] = _initialSupply;
-    }d
+    }
 }
