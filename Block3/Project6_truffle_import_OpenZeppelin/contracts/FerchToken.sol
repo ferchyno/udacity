@@ -20,6 +20,6 @@ contract FerchToken is ERC20 {
         require(_initialSupply > 0, "INITIAL_SUPPLY has to be greater than 0");
         // _mint(msg.sender, _initialSupply);
         _totalSupply = _initialSupply;
-        _balances[msg.sender] = _initialSupply;
+        _balances[msg.sender] = _initialSupply; // Prueba git add
     }
 }
