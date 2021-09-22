@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="325a7531-8411-4e63-9021-ecd59e7716bd" name="DEV" url="http://fcolmenar@dev01.server.cloudioo.net">
+        <fileTransfer host="fcolmenar@dev01.server.cloudioo.net" port="22" privateKey="$USER_HOME$/Documents/credentials/VanDyke/fcolmenar" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

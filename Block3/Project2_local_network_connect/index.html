@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (typeof browser === "undefined") {
+            var browser=window.browser||window.chrome;
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Deploy a Remix Contract</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+</head>
+0x21C6DE31Cb7a91e55c520Eb6EC38c0976b1Cae29
+<body>
+<div>
+    <h1>Ethereum Secret Messenger</h1>
+    <hr>
+
+    <label for="message">This site writes a secret message to the Ethereum
+        blockchain!</label>
+    <input id="userInput" type="text">
+
+    <button id="setMessageButton">Set secret message</button>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<script>
+    let url = [
+        "https://mainnet.infura.io/v3/f85ca96666304af18d77aa32afaf5293",
+        "https://rinkeby.infura.io/v3/f85ca96666304af18d77aa32afaf5293",
+        "HTTP://127.0.0.1:8545"
+    ];
+
+    // 1- Connect a the web3 provider
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        web3 = new Web3(new web3.providers.HttpProvider(url[1]));
+    }
+
+    // 2- Default account (Rinkeby account)
+    web3.eth.defaultAccount = '0xd88595BcB6518eA2C7AC0459677fd237ACF31B76';
+
+    // 3- Get the contract address (Rinkeby address contract)
+    let abi = [
+        {
+            "constant": false,
+            "inputs": [
+                {
+                    "name": "x",
+                    "type": "string"
+                }
+            ],
+            "name": "setMessage",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "getMessage",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ];
+    let contractAddress = '0xD42A6Bc07645394da5A51a0F13D1A5562226AEf7';
+
+    let contract = new web3.eth.Contract(abi, contractAddress);
+    // contract.methods.getMessage().call().then(console.log);
+
+    // 4- Send message
+    $("#setMessageButton").click(function () {
+        let message = $("#userInput").val();
+        contract.methods.setMessage(message).send({from:web3.eth.defaultAccount});
+        console.log($("#userInput").val())
+    });
+
+</script>
+</body>
+
+</html>
